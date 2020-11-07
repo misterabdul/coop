@@ -11,7 +11,7 @@ typedef struct _string
 {
     struct _object object;
 
-    void *private;
+    void *privateData;
 } * String;
 
 /**

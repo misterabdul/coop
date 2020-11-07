@@ -7,7 +7,7 @@
  */
 typedef struct _object
 {
-    void *private;
+    void *privateData;
 
     char *(*toString)(void *);
 } * Object;

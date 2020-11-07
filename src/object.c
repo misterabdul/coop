@@ -13,7 +13,7 @@ Object__innerToString(void *object)
 {
     return ((ObjectPrivateData)(
                 (Object)object)
-                ->private)
+                ->privateData)
         ->name;
 }
 
@@ -23,7 +23,7 @@ Object__new()
     Object newObject = malloc(sizeof(struct _object));
     ObjectPrivateData privateData = malloc(sizeof(struct _objectPrivateData));
     strcpy(privateData->name, "Object");
-    newObject->private = privateData;
+    newObject->privateData = privateData;
     newObject->toString = &Object__innerToString;
 
     return newObject;
@@ -32,7 +32,7 @@ Object__new()
 char *
 Object__getName(Object object)
 {
-    return ((ObjectPrivateData)(object->private))->name;
+    return ((ObjectPrivateData)(object->privateData))->name;
 }
 
 char *
@@ -43,8 +43,8 @@ Object__toString(void *object)
 
 void Object__delete(Object *object)
 {
-    free((*object)->private);
-    (*object)->private = NULL;
+    free((*object)->privateData);
+    (*object)->privateData = NULL;
     free(*object);
     *object = NULL;
 }
